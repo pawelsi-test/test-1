@@ -11,14 +11,15 @@ pipeline {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
+                //git url: 'https://github.com/K4szmiriX/jenkins-course-repo.git', branch: 'master'
                 git url: 'https://github.com/rechandler12/szkolenie-ci-jenkins-example.git', branch: 'main'
 
                 // Run Maven on a Unix agent.
-                sh "mvn clean spring-boot:build-image"
+                sh "mvn clean install"
             }
         }
     }
-    
+
     post {
         // If Maven was able to run the tests, even if some of the test
         // failed, record the test results and archive the jar file.
